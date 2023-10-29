@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RecordLabelApi.Models;
+using RecordLabelApi.Repositories;
 
 namespace RecordLabelApi.Controllers
 {
@@ -6,11 +8,16 @@ namespace RecordLabelApi.Controllers
     [Route("[controller]")]
     public class ArtistController
     {
+        private readonly IArtistRepository _repository;
+        public ArtistController(IArtistRepository repository)
+        {
+            _repository = repository;
+        }
 
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<Artist>> Get()
         {
-            return Enumerable.Empty<string>();
+            return await _repository.GetAll();
         }
     }
 }
