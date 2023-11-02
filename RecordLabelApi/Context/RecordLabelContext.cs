@@ -9,6 +9,7 @@ namespace RecordLabelApi.Context
         public DbSet<Album> Albums { get; set; }
         public DbSet<Single> Singles { get; set; }
         public DbSet<Artist> Artists { get; set; }
+        public DbSet<Platform> Platforms { get; set; }
         
         private readonly string _connectionString;
 

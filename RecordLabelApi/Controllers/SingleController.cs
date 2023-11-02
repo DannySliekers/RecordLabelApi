@@ -79,5 +79,5 @@ namespace RecordLabelApi.Controllers
         {
             return _repository.Get(id);
         }
-    } 
+    }
 }

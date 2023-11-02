@@ -7,7 +7,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
+builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
+builder.Services.AddScoped<ISingleRepository, SingleRepository>();
+builder.Services.AddScoped<IPlatformRepository, PlatformRepository>();
 builder.Services.AddDbContext<RecordLabelContext>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
