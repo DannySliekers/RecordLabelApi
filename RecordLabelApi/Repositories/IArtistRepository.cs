@@ -7,5 +7,7 @@ namespace RecordLabelApi.Repositories
         IQueryable<Artist> GetAll();
         IQueryable<Artist> Get(int id);
         Task<int> AddArtist(Artist artist);
+        Task<int> UpdateArtist(Artist artist);
+        Task<int> DeleteArtist(int id);
     }
 }
