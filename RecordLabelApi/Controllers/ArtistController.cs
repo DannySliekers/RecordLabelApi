@@ -15,9 +15,15 @@ namespace RecordLabelApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Artist>> Get()
+        public List<Artist> Get()
         {
-            return await _repository.GetAll();
+            return _repository.GetAll().ToList();
+        }
+
+        [HttpGet("{id}")]
+        public List<Artist> GetById(int id)
+        {
+            return _repository.Get(id).ToList();
         }
     }
 }

@@ -1,30 +1,25 @@
 ﻿using Dapper;
-using Npgsql;
+using RecordLabelApi.Context;
 using RecordLabelApi.Models;
 
 namespace RecordLabelApi.Repositories
 {
-    public class ArtistRepository : IArtistRepository, IDisposable
+    public class ArtistRepository : IArtistRepository
     {
-        private readonly NpgsqlConnection _connection;
-
-        public ArtistRepository(IConfiguration configuration)
+        private readonly RecordLabelContext _context;
+        public ArtistRepository(RecordLabelContext context)
         {
-            _connection = new NpgsqlConnection(configuration.GetConnectionString("DB"));
-            _connection.Open();
+            _context = context;
         }
 
-        public async Task<IEnumerable<Artist>> GetAll()
+        public IQueryable<Artist> Get(int id)
         {
-            var commandText = "SELECT * FROM \"Artist\"";
-            return await _connection.QueryAsync<Artist>(commandText);
+            return from artist in _context.Artists where artist.Id == id select artist;
         }
 
-        public void Dispose()
+        public IQueryable<Artist> GetAll()
         {
-            GC.SuppressFinalize(this);
-            _connection.Close();
+            return from artist in _context.Artists select artist;
         }
-
     }
 }
