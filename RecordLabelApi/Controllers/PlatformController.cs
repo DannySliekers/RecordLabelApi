@@ -4,6 +4,8 @@ using RecordLabelApi.Repositories;
 
 namespace RecordLabelApi.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class PlatformController : ControllerBase
     {
         private readonly ILogger<PlatformController> _logger;
