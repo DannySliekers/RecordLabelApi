@@ -6,16 +6,37 @@ namespace RecordLabelApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ArtistController
+    public class ArtistController : ControllerBase
     {
+        private readonly ILogger<ArtistController> _logger;
         private readonly IArtistRepository _repository;
-        public ArtistController(IArtistRepository repository)
+
+        public ArtistController(ILogger<ArtistController> logger, IArtistRepository repository)
         {
+            _logger = logger;
             _repository = repository;
         }
 
+
+        [HttpPost]
+        [ProducesResponseType(200, Type = typeof(Artist))]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> AddArtist(Artist artist)
+        {
+            try
+            {
+                await _repository.AddArtist(artist);
+                return Ok(artist);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, "Error while inserting artist");
+                return BadRequest();
+            }
+        }
+
         [HttpGet]
-        public List<Artist> Get()
+        public List<Artist> GetArtists()
         {
             return _repository.GetAll().ToList();
         }
