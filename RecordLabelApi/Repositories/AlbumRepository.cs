@@ -1,32 +1,44 @@
-﻿using RecordLabelApi.Models;
+﻿using RecordLabelApi.Context;
+using RecordLabelApi.Models;
 
 namespace RecordLabelApi.Repositories
 {
     public class AlbumRepository : IAlbumRepository
     {
-        public Task<int> AddAlbum(Album album)
+        private readonly RecordLabelContext _context;
+
+        public AlbumRepository(RecordLabelContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<int> DeleteAlbum(int id)
+        public async Task<int> AddAlbum(Album album)
         {
-            throw new NotImplementedException();
+            _context.Albums.Add(album);
+            return await _context.SaveChangesAsync();
         }
 
-        public IQueryable<Album> Get(int id)
+        public async Task<int> DeleteAlbum(int id)
         {
-            throw new NotImplementedException();
+            var album = _context.Albums.FirstOrDefault(a => a.Id == id);
+            _context.Albums.Remove(album);
+            return await _context.SaveChangesAsync();
         }
 
-        public IQueryable<Album> GetAll()
+        public Album Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Albums.Find(id);
         }
 
-        public Task<int> UpdateAlbum(Album album)
+        public IEnumerable<Album> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Albums.ToList();
+        }
+
+        public async Task<int> UpdateAlbum(Album album)
+        {
+            _context.Albums.Update(album);
+            return await _context.SaveChangesAsync();
         }
     }
 }

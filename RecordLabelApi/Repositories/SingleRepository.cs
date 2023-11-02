@@ -1,30 +1,44 @@
-﻿namespace RecordLabelApi.Repositories;
+﻿using RecordLabelApi.Context;
+using Single = RecordLabelApi.Models.Single;
+
+namespace RecordLabelApi.Repositories
 {
     public class SingleRepository : ISingleRepository
     {
-        public Task<int> AddSingle(Models.Single single)
+        private readonly RecordLabelContext _context;
+
+        public SingleRepository(RecordLabelContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<int> DeleteSingle(int id)
+        public async Task<int> AddSingle(Single single)
         {
-            throw new NotImplementedException();
+            _context.Singles.Add(single);
+            return await _context.SaveChangesAsync();
         }
 
-        public IQueryable<Models.Single> Get(int id)
+        public async Task<int> DeleteSingle(int id)
         {
-            throw new NotImplementedException();
+            var single = _context.Singles.FirstOrDefault(s => s.Id == id);
+            _context.Singles.Remove(single);
+            return await _context.SaveChangesAsync();
         }
 
-        public IQueryable<Models.Single> GetAll()
+        public Single Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Singles.Find(id);
         }
 
-        public Task<int> UpdateSingle(Models.Single single)
+        public IEnumerable<Single> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Singles.ToList();
+        }
+
+        public async Task<int> UpdateSingle(Single single)
+        {
+            _context.Singles.Update(single);
+            return await _context.SaveChangesAsync();
         }
     }
 }

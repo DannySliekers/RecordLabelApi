@@ -25,14 +25,14 @@ namespace RecordLabelApi.Repositories
             return await _context.SaveChangesAsync();
         }
 
-        public IQueryable<Artist> Get(int id)
+        public Artist Get(int id)
         {
-            return from artist in _context.Artists where artist.Id == id select artist;
+            return _context.Artists.Find(id);
         }
 
-        public IQueryable<Artist> GetAll()
+        public IEnumerable<Artist> GetAll()
         {
-            return from artist in _context.Artists select artist;
+            return _context.Artists.ToList();
         }
 
         public async Task<int> UpdateArtist(Artist artist)
