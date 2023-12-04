@@ -1,13 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Execute code when the DOM is ready
-
-    // Make a GET request using Fetch API
     fetch('https://localhost:7226/Artist')
       .then(response => response.json())
       .then(data => {
         var table = document.getElementById("dashboard");
         table.innerHTML = populateArtists(data)
-        // Display the fetched data in the HTML
         console.log(data);    
     })
       .catch(error => console.error('Error:', error))
