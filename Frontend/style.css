@@ -1,0 +1,9 @@
+.artistInspection {
+    border: 2px solid #3498db; /* Replace #3498db with your desired border color */
+    background-color: #ecf0f1; /* Replace #ecf0f1 with your desired background color */
+    padding: 100px; /* Optional: Add padding for better visual appearance */
+  }
+
+  .hide {
+    display: none;
+  }
