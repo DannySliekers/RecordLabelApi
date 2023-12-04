@@ -35,6 +35,13 @@ namespace RecordLabelApi.Repositories
             return _context.Singles.ToList();
         }
 
+        public IEnumerable<Single> GetByArtistId(int artistId)
+        {
+            var artist = _context.Artists.Find(artistId);
+            var singles = _context.Singles.Where(single => single.ArtistId == artistId).ToList();
+            return singles;
+        }
+
         public async Task<int> UpdateSingle(Single single)
         {
             _context.Singles.Update(single);

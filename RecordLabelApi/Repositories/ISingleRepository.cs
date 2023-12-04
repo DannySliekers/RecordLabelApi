@@ -9,5 +9,6 @@ namespace RecordLabelApi.Repositories
         Task<int> AddSingle(Single single);
         Task<int> UpdateSingle(Single single);
         Task<int> DeleteSingle(int id);
+        IEnumerable<Single> GetByArtistId(int artistId);
     }
 }

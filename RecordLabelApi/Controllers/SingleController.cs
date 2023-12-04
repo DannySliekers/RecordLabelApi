@@ -79,5 +79,11 @@ namespace RecordLabelApi.Controllers
         {
             return _repository.Get(id);
         }
+
+        [HttpGet("{artistId}")]
+        public List<Single> GetSinglesByArtistId(int artistId)
+        {
+            return _repository.GetByArtistId(artistId).ToList();
+        }
     }
 }
