@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(data => {
         var table = document.getElementById("dashboard");
         table.innerHTML = populateArtists(data)
-        console.log(data);    
     })
       .catch(error => console.error('Error:', error))
       .finally(() => {
@@ -17,14 +16,14 @@ function populateArtists(data) {
     data.forEach(element => {
         result += `<tr class='table-row'>
         <td>
-          <img id='arrowOpen' data-toggle='collapse' data-target='.row1-details' aria-expanded='false' height='30px' src='img/arrowclosed.png' alt='Closed arrow'>
-          <img id='arrowClosed' class='hide' data-toggle='collapse' data-target='.row1-details' width='30px' height='30px' src='img/arrowopen.png' alt='Open arrow'>
+          <img id='arrowOpen' data-toggle='collapse' data-target='.row` + element.id + `-details' aria-expanded='false' height='30px' src='img/arrowclosed.png' alt='Closed arrow'>
+          <img id='arrowClosed' class='hide' data-toggle='collapse' data-target='.row` + element.id + `-details' width='30px' height='30px' src='img/arrowopen.png' alt='Open arrow'>
         </td>
         <td>` + element.name + `</td>
         <td><a href='artist.html?id=` + element.id + `'><button>Edit</button></a></td>
-        <td><button>Delete</button></td>
+        <td><button onclick='deleteArtist(` + element.id + `)'>Delete</button></td>
       </tr>
-      <tr id='artistDetails' class='details-row row1-details artistInspection collapse'>
+      <tr id='artistDetails' class='details-row row` + element.id + `-details artistInspection collapse'>
         <td colspan='4'>
           <div>
             <p>Additional details for John Doe</p>
@@ -50,4 +49,11 @@ function addEventHandlers() {
         arrowOpen.classList.remove("hide");
         arrowClosed.classList.add("hide");
     })
+}
+
+async function deleteArtist(id) {
+  await fetch("https://localhost:7226/Artist?id=" + id, {
+      method: "DELETE"
+  });
+  location.reload();
 }
