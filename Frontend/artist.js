@@ -1,5 +1,6 @@
 const queryString = window.location.search;
 const id = queryString.split('=')[1];
+
 document.addEventListener("DOMContentLoaded", function() {
     fetch('https://localhost:7226/Artist/' + id)
       .then(response => response.json())
@@ -9,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     })
       .catch(error => console.error('Error:', error))
 });
+
 function updateArtist() {
     var body = {"Id": id, "Name": document.getElementById("nameField").value};
     fetch("https://localhost:7226/Artist", {
@@ -20,7 +22,7 @@ function updateArtist() {
     })      
     .then(response => response.json())
     .then(_ => {
-      location.reload();
-  })
+        location.reload();
+    })
     .catch(error => console.error('Error:', error));
 }

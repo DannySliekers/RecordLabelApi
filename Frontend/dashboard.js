@@ -36,24 +36,24 @@ function populateArtists(data) {
 }
 
 function addEventHandlers() {
-    $('#artistDetails').on('show.bs.collapse', function () {
-        var arrowOpen = document.getElementById("arrowOpen");
-        var arrowClosed = document.getElementById("arrowClosed");
-        arrowOpen.classList.add("hide");
-        arrowClosed.classList.remove("hide");
-    })
-    
-    $('#artistDetails').on('hidden.bs.collapse', function () {
-        var arrowOpen = document.getElementById("arrowOpen");
-        var arrowClosed = document.getElementById("arrowClosed");
-        arrowOpen.classList.remove("hide");
-        arrowClosed.classList.add("hide");
-    })
+	$('#artistDetails').on('show.bs.collapse', function () {
+		var arrowOpen = document.getElementById("arrowOpen");
+		var arrowClosed = document.getElementById("arrowClosed");
+		arrowOpen.classList.add("hide");
+		arrowClosed.classList.remove("hide");
+	})
+
+	$('#artistDetails').on('hidden.bs.collapse', function () {
+		var arrowOpen = document.getElementById("arrowOpen");
+		var arrowClosed = document.getElementById("arrowClosed");
+		arrowOpen.classList.remove("hide");
+		arrowClosed.classList.add("hide");
+	})
 }
 
 async function deleteArtist(id) {
-  await fetch("https://localhost:7226/Artist?id=" + id, {
-      method: "DELETE"
-  });
-  location.reload();
+	await fetch("https://localhost:7226/Artist?id=" + id, {
+		method: "DELETE"
+	});
+	location.reload();
 }
