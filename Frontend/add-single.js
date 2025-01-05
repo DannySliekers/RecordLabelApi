@@ -1,9 +1,8 @@
 const urlParams = new URLSearchParams(window.location.search);
-const artistId = urlParams.get('artistId');
+const artistId = parseInt(urlParams.get('artistId'));
 
 // Fetch platform options when the page loads
 document.addEventListener('DOMContentLoaded', function() {
-    // Fetch platform data from the API
     fetchPlatforms();
 
     // Handle form submission
@@ -11,13 +10,17 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(event) {
         event.preventDefault();
 
+        // Get selected platform IDs
+        const selectedPlatforms = Array.from(document.getElementById('platform').selectedOptions)
+            .map(option => parseInt(option.value));
+
         const formData = {
             title: document.getElementById('title').value,
             status: document.getElementById('status').value,
             playlength: document.getElementById('playlength').value,
             cover: document.getElementById('cover').value,
-            platformid: parseInt(document.getElementById('platform').value),
-            artistid: artistId // Replace with actual artist ID dynamically
+            platformIds: selectedPlatforms, // Pass the list of selected platform IDs
+            artistid: artistId
         };
 
         // Make API call to add single
@@ -46,13 +49,7 @@ function fetchPlatforms() {
         // Clear existing options (if any)
         platformSelect.innerHTML = '';
 
-        // Add a default "Select Platform" option
-        const defaultOption = document.createElement('option');
-        defaultOption.value = '';
-        defaultOption.textContent = 'Select Platform';
-        platformSelect.appendChild(defaultOption);
-
-        // Add the platform options fetched from the API
+        // Add platform options fetched from the API
         platforms.forEach(platform => {
             const option = document.createElement('option');
             option.value = platform.id;

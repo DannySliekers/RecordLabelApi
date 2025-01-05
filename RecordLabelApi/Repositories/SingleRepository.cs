@@ -1,6 +1,5 @@
 ﻿using RecordLabelApi.Context;
 using RecordLabelApi.Models;
-using System;
 using Single = RecordLabelApi.Models.Single;
 
 namespace RecordLabelApi.Repositories
