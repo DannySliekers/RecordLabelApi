@@ -1,14 +1,15 @@
-﻿using Single = RecordLabelApi.Models.Single;
+﻿using RecordLabelApi.Models;
+using Single = RecordLabelApi.Models.Single;
 
 namespace RecordLabelApi.Repositories
 {
     public interface ISingleRepository
     {
-        IEnumerable<Single> GetAll();
-        Single Get(int id);
-        Task<int> AddSingle(Single single);
-        Task<int> UpdateSingle(Single single);
+        IEnumerable<SingleRequest> GetAll();
+        SingleRequest Get(int id);
+        Task<int> AddSingle(SingleRequest single);
+        Task<int> UpdateSingle(SingleRequest single);
         Task<int> DeleteSingle(int id);
-        IEnumerable<Single> GetByArtistId(int artistId);
+        IEnumerable<SingleRequest> GetByArtistId(int artistId);
     }
 }

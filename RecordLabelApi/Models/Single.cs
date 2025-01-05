@@ -7,7 +7,6 @@
         public required string status { get; set; }
         public required string playlength { get; set; }
         public required string cover { get; set; }
-        public int platformid { get; set; }
         public int artistid { get; set; }
     }
 }

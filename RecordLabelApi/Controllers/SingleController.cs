@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RecordLabelApi.Models;
 using RecordLabelApi.Repositories;
 using Single = RecordLabelApi.Models.Single;
 
@@ -20,7 +21,7 @@ namespace RecordLabelApi.Controllers
         }
 
         [HttpDelete]
-        [ProducesResponseType(200, Type = typeof(Single))]
+        [ProducesResponseType(200, Type = typeof(SingleRequest))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> DeleteSingle(int id)
         {
@@ -37,9 +38,9 @@ namespace RecordLabelApi.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(200, Type = typeof(Single))]
+        [ProducesResponseType(200, Type = typeof(SingleRequest))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> AddSingle(Single single)
+        public async Task<IActionResult> AddSingle(SingleRequest single)
         {
             try
             {
@@ -54,9 +55,9 @@ namespace RecordLabelApi.Controllers
         }
 
         [HttpPut]
-        [ProducesResponseType(200, Type = typeof(Single))]
+        [ProducesResponseType(200, Type = typeof(SingleRequest))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> UpdateSingle(Single single)
+        public async Task<IActionResult> UpdateSingle(SingleRequest single)
         {
             try
             {
@@ -71,19 +72,19 @@ namespace RecordLabelApi.Controllers
         }
 
         [HttpGet]
-        public List<Single> GetSingles()
+        public List<SingleRequest> GetSingles()
         {
             return _repository.GetAll().ToList();
         }
 
         [HttpGet("{id}")]
-        public Single GetById(int id)
+        public SingleRequest GetById(int id)
         {
             return _repository.Get(id);
         }
 
         [HttpGet("byArtist/{artistId}")]
-        public List<Single> GetSinglesByArtistId(int artistId)
+        public List<SingleRequest> GetSinglesByArtistId(int artistId)
         {
             return _repository.GetByArtistId(artistId).ToList();
         }
