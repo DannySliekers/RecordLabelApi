@@ -6,31 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <title>Dashboard</title>
+  <title>Add Platform</title>
 </head>
 
 <body>
   <div class="container mt-5">
-    <h2>Dashboard</h2>
-    <table class="table">
-      <tbody id="dashboard">
-        
-      </tbody>
-    </table>
-  </div>
-  
-  <div class="container mt-5">
-    <button onclick="navigateToAddArtist()">Add artist</button>
-    <button onclick="navigateToAddPlatform()">Add Platform</button>
+    <h2>Add Platform</h2>
+    <form id="addPlatformForm">
+      <div class="form-group">
+        <label for="platformName">Platform Name</label>
+        <input type="text" class="form-control" id="platformName" name="platformName" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Platform</button>
+    </form>
+    <div id="message" class="mt-3"></div>
   </div>
 
-  <div class="container mt-3">
-    <button onclick="logout()" class="btn btn-danger">Logout</button>
-  </div>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="dashboard.js"></script>
+  <script src="add-platform.js"></script>
 </body>
 
 </html>

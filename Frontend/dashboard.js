@@ -136,6 +136,10 @@ function navigateToAddArtist() {
   window.location.href = "add-artist.html"; // Navigate to the Add Artist page
 }
 
+function navigateToAddPlatform() {
+  window.location.href = 'add-platform.html'; // Redirect to add-platform.html
+}
+
 function addSingle(artistId) {
   window.location.href = `add-single.html?artistId=${artistId}`;
 }
