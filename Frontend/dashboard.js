@@ -51,6 +51,10 @@ function addEventHandlers() {
 	})
 }
 
+function navigateToAddArtist() {
+  window.location.href = "add-artist.html"; // Navigate to the Add Artist page
+}
+
 async function deleteArtist(id) {
 	await fetch("https://localhost:7226/Artist?id=" + id, {
 		method: "DELETE"

@@ -14,30 +14,30 @@ namespace RecordLabelApi.Repositories
 
         public async Task<int> AddArtist(Artist artist)
         {
-            _context.Artists.Add(artist);
+            _context.Artist.Add(artist);
             return await _context.SaveChangesAsync();
         }
 
         public async Task<int> DeleteArtist(int id)
         {
-            var artist = _context.Artists.FirstOrDefault(a => a.Id == id);
-            _context.Artists.Remove(artist);
+            var artist = _context.Artist.FirstOrDefault(a => a.id == id);
+            _context.Artist.Remove(artist);
             return await _context.SaveChangesAsync();
         }
 
         public Artist Get(int id)
         {
-            return _context.Artists.Find(id);
+            return _context.Artist.Find(id);
         }
 
         public IEnumerable<Artist> GetAll()
         {
-            return _context.Artists.ToList();
+            return _context.Artist.ToList();
         }
 
         public async Task<int> UpdateArtist(Artist artist)
         {
-            _context.Artists.Update(artist);
+            _context.Artist.Update(artist);
             return await _context.SaveChangesAsync();
         }
     }

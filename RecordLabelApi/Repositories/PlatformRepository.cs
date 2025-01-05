@@ -14,30 +14,30 @@ namespace RecordLabelApi.Repositories
 
         public async Task<int> AddPlatform(Platform platform)
         {
-            _context.Platforms.Add(platform);
+            _context.Platform.Add(platform);
             return await _context.SaveChangesAsync();
         }
 
         public async Task<int> DeletePlatform(int id)
         {
-            var platform = _context.Platforms.FirstOrDefault(p => p.Id == id);
-            _context.Platforms.Remove(platform);
+            var platform = _context.Platform.FirstOrDefault(p => p.Id == id);
+            _context.Platform.Remove(platform);
             return await _context.SaveChangesAsync();
         }
 
         public Platform Get(int id)
         {
-            return _context.Platforms.Find(id);
+            return _context.Platform.Find(id);
         }
 
         public IEnumerable<Platform> GetAll()
         {
-            return _context.Platforms.ToList();
+            return _context.Platform.ToList();
         }
 
         public async Task<int> UpdatePlatform(Platform platform)
         {
-            _context.Platforms.Update(platform);
+            _context.Platform.Update(platform);
             return await _context.SaveChangesAsync();
         }
     }
