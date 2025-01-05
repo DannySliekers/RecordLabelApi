@@ -1,14 +1,29 @@
 document.addEventListener("DOMContentLoaded", function() {
-    fetch('https://localhost:7226/Artist')
-      .then(response => response.json())
-      .then(data => {
-        var table = document.getElementById("dashboard");
-        table.innerHTML = populateArtists(data)
-    })
-      .catch(error => console.error('Error:', error))
-      .finally(() => {
-        addEventHandlers();
-      });
+  // Retrieve JWT token from localStorage
+  const token = localStorage.getItem('jwtToken');
+
+  // If token exists, include it in the Authorization header
+  const headers = token ? {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+  } : {
+      'Content-Type': 'application/json'
+  };
+
+  // Fetch data from the API
+  fetch('https://localhost:7226/Artist', {
+      method: 'GET',
+      headers: headers // Include the Authorization header if token exists
+  })
+  .then(response => response.json())
+  .then(data => {
+      var table = document.getElementById("dashboard");
+      table.innerHTML = populateArtists(data); // Assuming this function populates your table
+  })
+  .catch(error => console.error('Error:', error))
+  .finally(() => {
+      addEventHandlers(); // Assuming this adds event handlers to elements
+  });
 });
 
 function populateArtists(data) {
@@ -56,8 +71,38 @@ function navigateToAddArtist() {
 }
 
 async function deleteArtist(id) {
-	await fetch("https://localhost:7226/Artist?id=" + id, {
-		method: "DELETE"
-	});
-	location.reload();
+  // Retrieve JWT token from localStorage
+  const token = localStorage.getItem('jwtToken');
+
+  // Prepare headers with the Authorization token if it exists
+  const headers = token ? {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+  } : {
+      'Content-Type': 'application/json'
+  };
+
+  // Send the DELETE request with the token in the headers
+  await fetch(`https://localhost:7226/Artist?id=${id}`, {
+      method: "DELETE",
+      headers: headers  // Include Authorization header if token exists
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Failed to delete artist');
+      }
+      location.reload(); // Reload page after successful delete
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      alert('Error deleting artist.');
+  });
+}
+
+function logout() {
+  // Remove JWT token from localStorage
+  localStorage.removeItem('jwtToken');
+  
+  // Redirect to login page
+  window.location.href = "login.html";
 }

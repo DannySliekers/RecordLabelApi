@@ -21,6 +21,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
       const result = await response.json();
       
       if (response.ok) {
+        localStorage.setItem('jwtToken', result.token); // Store token
         // If login is successful
         messageElement.textContent = result.message || 'Login successful!';
         messageElement.classList.add('alert', 'alert-success');
