@@ -20,7 +20,7 @@ namespace RecordLabelApi.Repositories
 
         public async Task<int> DeleteSingle(int id)
         {
-            var single = _context.Single.FirstOrDefault(s => s.Id == id);
+            var single = _context.Single.FirstOrDefault(s => s.id == id);
             _context.Single.Remove(single);
             return await _context.SaveChangesAsync();
         }
@@ -38,7 +38,7 @@ namespace RecordLabelApi.Repositories
         public IEnumerable<Single> GetByArtistId(int artistId)
         {
             var artist = _context.Artist.Find(artistId);
-            var singles = _context.Single.Where(single => single.ArtistId == artistId).ToList();
+            var singles = _context.Single.Where(single => single.artistid == artistId).ToList();
             return singles;
         }
 

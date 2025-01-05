@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Add Single</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Add New Single
+                </div>
+                <div class="card-body">
+                    <form id="addSingleForm">
+                        <div class="form-group">
+                            <label for="title">Single Title:</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status:</label>
+                            <input type="text" class="form-control" id="status" name="status" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="playlength">Play Length:</label>
+                            <input type="text" class="form-control" id="playlength" name="playlength" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cover">Cover URL:</label>
+                            <input type="text" class="form-control" id="cover" name="cover" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="platform">Platform:</label>
+                            <select id="platform" class="form-control" name="platform" required>
+                                <option value="" disabled selected>Select Platform</option>
+                                <!-- Platform options will be populated here -->
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Single</button>
+                    </form>
+                    <div id="message" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="add-single.js">
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

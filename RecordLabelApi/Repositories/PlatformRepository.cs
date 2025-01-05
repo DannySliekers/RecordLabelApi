@@ -20,7 +20,7 @@ namespace RecordLabelApi.Repositories
 
         public async Task<int> DeletePlatform(int id)
         {
-            var platform = _context.Platform.FirstOrDefault(p => p.Id == id);
+            var platform = _context.Platform.FirstOrDefault(p => p.id == id);
             _context.Platform.Remove(platform);
             return await _context.SaveChangesAsync();
         }

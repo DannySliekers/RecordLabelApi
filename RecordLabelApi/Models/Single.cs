@@ -2,12 +2,12 @@
 {
     public class Single
     {
-        public int Id { get; set; }
-        public required string Title { get; set; }
-        public required string Status { get; set; }
-        public required string PlayLength { get; set; }
-        public required string Cover { get; set; }
-        public int PlatformId { get; set; }
-        public int ArtistId { get; set; }
+        public int id { get; set; }
+        public required string title { get; set; }
+        public required string status { get; set; }
+        public required string playlength { get; set; }
+        public required string cover { get; set; }
+        public int platformid { get; set; }
+        public int artistid { get; set; }
     }
 }
