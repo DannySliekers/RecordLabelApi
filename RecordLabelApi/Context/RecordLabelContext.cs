@@ -10,7 +10,9 @@ namespace RecordLabelApi.Context
         public DbSet<Single> Single { get; set; }
         public DbSet<Artist> Artist { get; set; }
         public DbSet<Platform> Platform { get; set; }
-        
+        public DbSet<User> User { get; set; }
+
+
         private readonly string _connectionString;
 
         public RecordLabelContext(IConfiguration configuration)
